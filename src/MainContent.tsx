@@ -5,7 +5,7 @@ import { CartContext } from "./CartContext";
 export default function MainContent() {
   const { addToCart } = useContext(CartContext);
   return (
-    <div>
+    <div style={{ padding: "2rem" }}>
       {mockedProducts.map((product) => (
         <div key={product.id}>
           <p>{product.name}</p>

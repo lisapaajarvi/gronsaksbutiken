@@ -4,6 +4,10 @@ export interface Product {
     price: number
 }
 
+export interface CartProduct extends Product {
+    quantity: number
+}
+
 export const mockedProducts: Product[] = [
     {
         id: 1,

@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { CartContext } from "./CartContext";
 
 export default function Header() {
-  const { cart } = useContext(CartContext);
+  const { cart, toggleCart, isCartOpen } = useContext(CartContext);
   return (
     <div
       style={{
-        height: "4rem",
+        height: "6rem",
         backgroundColor: "green",
         display: "flex",
         justifyContent: "space-between",
@@ -15,7 +15,12 @@ export default function Header() {
       }}
     >
       <h1>Grönsaksbutiken</h1>
-      <p>Kundvagn: {cart.length}</p>
+      <div>
+        <p>Kundvagn: {cart.length}</p>
+        <button onClick={toggleCart}>
+          {isCartOpen ? "Stäng kundvagn" : "Öppna kundvagn"}
+        </button>
+      </div>
     </div>
   );
 }

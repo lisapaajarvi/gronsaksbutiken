@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { mockedProducts } from "./data";
 import { CartContext } from "./CartContext";
+import Button from "@mui/material/Button";
+import CartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function MainContent() {
   const { addToCart } = useContext(CartContext);
@@ -12,7 +14,13 @@ export default function MainContent() {
           <p>
             {product.price} {" kr"}
           </p>
-          <button onClick={() => addToCart(product)}>Lägg i kundvagn</button>
+          <Button
+            variant="contained"
+            endIcon={<CartIcon />}
+            onClick={() => addToCart(product)}
+          >
+            Lägg i kundvagn
+          </Button>
         </div>
       ))}
     </div>

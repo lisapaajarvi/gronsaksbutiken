@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
 import { Link } from "react-router-dom";
+import CartBadge from "./CartBadge";
 
 export default function Header() {
   const { cart, toggleCart, isCartOpen } = useContext(CartContext);
@@ -24,7 +25,7 @@ export default function Header() {
       >
         <h1>Grönsaksbutiken</h1>
         <div>
-          <p>Kundvagn: {cart.length}</p>
+          <CartBadge cartLength={cart.length} />
           <button onClick={toggleCart}>
             {isCartOpen ? "Stäng kundvagn" : "Öppna kundvagn"}
           </button>

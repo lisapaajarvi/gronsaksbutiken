@@ -1,25 +1,33 @@
-import { useContext } from "react";
-import Cart from "./Cart";
-import Header from "./Header";
 import MainContent from "./MainContent";
-import { CartContext } from "./CartContext";
-import { Route, Routes } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import About from "./About";
 import NotFound from "./NotFound";
+import Layout from "./Layout";
+import ErrorBoundary from "./ErrorBoundary";
+
+const routesFromElements = createRoutesFromElements(
+  <>
+    <Route element={<Layout />}>
+      <Route index path="/" element={<MainContent />} />
+      <Route
+        path="/about"
+        element={<About />}
+        errorElement={<ErrorBoundary />}
+      />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </>
+);
+
+const router = createBrowserRouter(routesFromElements);
 
 function App() {
-  const { isCartOpen } = useContext(CartContext);
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<MainContent />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      {isCartOpen && <Cart />}
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
